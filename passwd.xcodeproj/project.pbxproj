@@ -1,0 +1,751 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE16C8662B735BBC00C6343B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16C8652B735BBC00C6343B /* LoginView.swift */; };
+		CE1D0EEC2B81AC7900302812 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EEB2B81AC7900302812 /* UserInfo.swift */; };
+		CE1D0EF02B81CC7200302812 /* LoginInfoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EEF2B81CC7200302812 /* LoginInfoCheck.swift */; };
+		CE1D0EF42B81E20400302812 /* ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EF32B81E20400302812 /* ScreenType.swift */; };
+		CE1D0EF82B81F6E200302812 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EF72B81F6E200302812 /* RequestError.swift */; };
+		CE1D0EFD2B84422800302812 /* NewPasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */; };
+		CE1D0EFF2B84706A00302812 /* DeletePasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */; };
+		CE362EBF2B8256DB007634AF /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EBE2B8256DB007634AF /* SignupView.swift */; };
+		CE362EC42B826ACF007634AF /* SignupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EC32B826ACF007634AF /* SignupResponse.swift */; };
+		CE362EC72B83271F007634AF /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EC62B83271F007634AF /* RequestHelper.swift */; };
+		CE362EC92B833B5E007634AF /* NewGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EC82B833B5E007634AF /* NewGroupResponse.swift */; };
+		CE362ECB2B834384007634AF /* UpdateGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362ECA2B834384007634AF /* UpdateGroupResponse.swift */; };
+		CE362ECD2B834C27007634AF /* DeleteGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362ECC2B834C27007634AF /* DeleteGroupResponse.swift */; };
+		CE362ED02B8362D7007634AF /* UpdatePasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362ECF2B8362D7007634AF /* UpdatePasswdResponse.swift */; };
+		CE362ED22B83A022007634AF /* AESUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362ED12B83A022007634AF /* AESUtil.swift */; };
+		CE53B8182B720978003D4EF0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53B8172B720978003D4EF0 /* Group.swift */; };
+		CE53B8192B721ABB003D4EF0 /* SideGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */; };
+		CEAD76B92B6F6AF30035C0E5 /* passwdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */; };
+		CEAD76BD2B6F6AF50035C0E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD76BC2B6F6AF50035C0E5 /* Assets.xcassets */; };
+		CEAD76C02B6F6AF50035C0E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD76BF2B6F6AF50035C0E5 /* Preview Assets.xcassets */; };
+		CEAD76CB2B6F6AF50035C0E5 /* passwdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76CA2B6F6AF50035C0E5 /* passwdTests.swift */; };
+		CEAD76D52B6F6AF50035C0E5 /* passwdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76D42B6F6AF50035C0E5 /* passwdUITests.swift */; };
+		CEAD76D72B6F6AF50035C0E5 /* passwdUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76D62B6F6AF50035C0E5 /* passwdUITestsLaunchTests.swift */; };
+		CEAD76E42B7086310035C0E5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76E32B7086310035C0E5 /* DataModel.swift */; };
+		CEAD76EA2B708B490035C0E5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEAD76E92B708B490035C0E5 /* Info.plist */; };
+		CEAD76EC2B70BB920035C0E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76EB2B70BB920035C0E5 /* Constants.swift */; };
+		CEAD76EE2B70BD1F0035C0E5 /* Passwd.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76ED2B70BD1F0035C0E5 /* Passwd.swift */; };
+		CEAD76F62B70D8350035C0E5 /* AESWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76F52B70D8350035C0E5 /* AESWrapper.mm */; };
+		CEBF196F2B727700003BEC4B /* PasswdsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF196E2B727700003BEC4B /* PasswdsView.swift */; };
+		CEC13F2B2B72634A009A42A1 /* RegexHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC13F2A2B72634A009A42A1 /* RegexHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CEAD76C72B6F6AF50035C0E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEAD76AD2B6F6AF30035C0E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEAD76B42B6F6AF30035C0E5;
+			remoteInfo = passwd;
+		};
+		CEAD76D12B6F6AF50035C0E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEAD76AD2B6F6AF30035C0E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEAD76B42B6F6AF30035C0E5;
+			remoteInfo = passwd;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CE16C8652B735BBC00C6343B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CE1D0EEB2B81AC7900302812 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		CE1D0EEF2B81CC7200302812 /* LoginInfoCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfoCheck.swift; sourceTree = "<group>"; };
+		CE1D0EF32B81E20400302812 /* ScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenType.swift; sourceTree = "<group>"; };
+		CE1D0EF72B81F6E200302812 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		CE1D0EF92B843B6900302812 /* passwdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = passwdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1D0EFA2B843B6900302812 /* passwdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = passwdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswdResponse.swift; sourceTree = "<group>"; };
+		CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePasswdResponse.swift; sourceTree = "<group>"; };
+		CE362EBE2B8256DB007634AF /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		CE362EC32B826ACF007634AF /* SignupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupResponse.swift; sourceTree = "<group>"; };
+		CE362EC62B83271F007634AF /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		CE362EC82B833B5E007634AF /* NewGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupResponse.swift; sourceTree = "<group>"; };
+		CE362ECA2B834384007634AF /* UpdateGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGroupResponse.swift; sourceTree = "<group>"; };
+		CE362ECC2B834C27007634AF /* DeleteGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponse.swift; sourceTree = "<group>"; };
+		CE362ECF2B8362D7007634AF /* UpdatePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswdResponse.swift; sourceTree = "<group>"; };
+		CE362ED12B83A022007634AF /* AESUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESUtil.swift; sourceTree = "<group>"; };
+		CE53B8172B720978003D4EF0 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdApp.swift; sourceTree = "<group>"; };
+		CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideGroupsView.swift; sourceTree = "<group>"; };
+		CEAD76BC2B6F6AF50035C0E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEAD76BF2B6F6AF50035C0E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEAD76C12B6F6AF50035C0E5 /* passwd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = passwd.entitlements; sourceTree = "<group>"; };
+		CEAD76CA2B6F6AF50035C0E5 /* passwdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdTests.swift; sourceTree = "<group>"; };
+		CEAD76D42B6F6AF50035C0E5 /* passwdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdUITests.swift; sourceTree = "<group>"; };
+		CEAD76D62B6F6AF50035C0E5 /* passwdUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEAD76E32B7086310035C0E5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		CEAD76E92B708B490035C0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEAD76EB2B70BB920035C0E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CEAD76ED2B70BD1F0035C0E5 /* Passwd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passwd.swift; sourceTree = "<group>"; };
+		CEAD76F52B70D8350035C0E5 /* AESWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AESWrapper.mm; sourceTree = "<group>"; };
+		CEAD76FB2B70E1970035C0E5 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		CEAD77452B70EC010035C0E5 /* passwd-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "passwd-Bridging-Header.h"; sourceTree = "<group>"; };
+		CEAD77522B70FB870035C0E5 /* AESWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AESWrapper.h; sourceTree = "<group>"; };
+		CEBF196E2B727700003BEC4B /* PasswdsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswdsView.swift; sourceTree = "<group>"; };
+		CEC13F2A2B72634A009A42A1 /* RegexHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHelper.swift; sourceTree = "<group>"; };
+		CEF431802B858DE50014D6E2 /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = passwd.app; path = "/Users/leslie/Library/Mobile Documents/com~apple~CloudDocs/DYF/Coding/xcode/passwd/build/Debug/passwd.app"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEAD76B22B6F6AF30035C0E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76C32B6F6AF50035C0E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76CD2B6F6AF50035C0E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE16C8642B735BAD00C6343B /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				CE16C8652B735BBC00C6343B /* LoginView.swift */,
+				CE362EBE2B8256DB007634AF /* SignupView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		CE1D0EED2B81AC7E00302812 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE1D0EEB2B81AC7900302812 /* UserInfo.swift */,
+				CEAD76E32B7086310035C0E5 /* DataModel.swift */,
+				CE1D0EF32B81E20400302812 /* ScreenType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE1D0EEE2B81CC1300302812 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEC13F2A2B72634A009A42A1 /* RegexHelper.swift */,
+				CE1D0EEF2B81CC7200302812 /* LoginInfoCheck.swift */,
+				CEF431812B85A7B60014D6E2 /* AES */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CE362EC22B826AB3007634AF /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				CE53B8172B720978003D4EF0 /* Group.swift */,
+				CEAD76ED2B70BD1F0035C0E5 /* Passwd.swift */,
+				CE362EC32B826ACF007634AF /* SignupResponse.swift */,
+				CE362EC82B833B5E007634AF /* NewGroupResponse.swift */,
+				CE362ECA2B834384007634AF /* UpdateGroupResponse.swift */,
+				CE362ECC2B834C27007634AF /* DeleteGroupResponse.swift */,
+				CE362ECF2B8362D7007634AF /* UpdatePasswdResponse.swift */,
+				CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */,
+				CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		CE362EC52B830E7E007634AF /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				CE1D0EF72B81F6E200302812 /* RequestError.swift */,
+				CE362EC22B826AB3007634AF /* Response */,
+				CEAD76EB2B70BB920035C0E5 /* Constants.swift */,
+				CE362EC62B83271F007634AF /* RequestHelper.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		CEAD76AC2B6F6AF30035C0E5 = {
+			isa = PBXGroup;
+			children = (
+				CEAD76E92B708B490035C0E5 /* Info.plist */,
+				CEAD76B72B6F6AF30035C0E5 /* passwd */,
+				CEAD76C92B6F6AF50035C0E5 /* passwdTests */,
+				CEAD76D32B6F6AF50035C0E5 /* passwdUITests */,
+				CEAD76FA2B70E1970035C0E5 /* Frameworks */,
+				CE1D0EF92B843B6900302812 /* passwdTests.xctest */,
+				CE1D0EFA2B843B6900302812 /* passwdUITests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		CEAD76B72B6F6AF30035C0E5 /* passwd */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */,
+				CE362EC52B830E7E007634AF /* NetWork */,
+				CE1D0EEE2B81CC1300302812 /* Utils */,
+				CE1D0EED2B81AC7E00302812 /* Model */,
+				CE16C8642B735BAD00C6343B /* LoginView */,
+				CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */,
+				CEBF196E2B727700003BEC4B /* PasswdsView.swift */,
+				CEAD76BC2B6F6AF50035C0E5 /* Assets.xcassets */,
+				CEAD76C12B6F6AF50035C0E5 /* passwd.entitlements */,
+				CEAD77452B70EC010035C0E5 /* passwd-Bridging-Header.h */,
+				CEAD76BE2B6F6AF50035C0E5 /* Preview Content */,
+			);
+			path = passwd;
+			sourceTree = "<group>";
+		};
+		CEAD76BE2B6F6AF50035C0E5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD76BF2B6F6AF50035C0E5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEAD76C92B6F6AF50035C0E5 /* passwdTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD76CA2B6F6AF50035C0E5 /* passwdTests.swift */,
+			);
+			path = passwdTests;
+			sourceTree = "<group>";
+		};
+		CEAD76D32B6F6AF50035C0E5 /* passwdUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD76D42B6F6AF50035C0E5 /* passwdUITests.swift */,
+				CEAD76D62B6F6AF50035C0E5 /* passwdUITestsLaunchTests.swift */,
+			);
+			path = passwdUITests;
+			sourceTree = "<group>";
+		};
+		CEAD76FA2B70E1970035C0E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEAD76FB2B70E1970035C0E5 /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEF431812B85A7B60014D6E2 /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				CE362ED12B83A022007634AF /* AESUtil.swift */,
+				CEAD76F52B70D8350035C0E5 /* AESWrapper.mm */,
+				CEAD77522B70FB870035C0E5 /* AESWrapper.h */,
+			);
+			path = AES;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEAD76B42B6F6AF30035C0E5 /* passwd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEAD76DA2B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwd" */;
+			buildPhases = (
+				CEAD76B12B6F6AF30035C0E5 /* Sources */,
+				CEAD76B22B6F6AF30035C0E5 /* Frameworks */,
+				CEAD76B32B6F6AF30035C0E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = passwd;
+			productName = passwd;
+			productReference = CEF431802B858DE50014D6E2 /* passwd.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CEAD76C52B6F6AF50035C0E5 /* passwdTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEAD76DD2B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwdTests" */;
+			buildPhases = (
+				CEAD76C22B6F6AF50035C0E5 /* Sources */,
+				CEAD76C32B6F6AF50035C0E5 /* Frameworks */,
+				CEAD76C42B6F6AF50035C0E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEAD76C82B6F6AF50035C0E5 /* PBXTargetDependency */,
+			);
+			name = passwdTests;
+			productName = passwdTests;
+			productReference = CE1D0EF92B843B6900302812 /* passwdTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CEAD76CF2B6F6AF50035C0E5 /* passwdUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEAD76E02B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwdUITests" */;
+			buildPhases = (
+				CEAD76CC2B6F6AF50035C0E5 /* Sources */,
+				CEAD76CD2B6F6AF50035C0E5 /* Frameworks */,
+				CEAD76CE2B6F6AF50035C0E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEAD76D22B6F6AF50035C0E5 /* PBXTargetDependency */,
+			);
+			name = passwdUITests;
+			productName = passwdUITests;
+			productReference = CE1D0EFA2B843B6900302812 /* passwdUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEAD76AD2B6F6AF30035C0E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					CEAD76B42B6F6AF30035C0E5 = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+					};
+					CEAD76C52B6F6AF50035C0E5 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = CEAD76B42B6F6AF30035C0E5;
+					};
+					CEAD76CF2B6F6AF50035C0E5 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = CEAD76B42B6F6AF30035C0E5;
+					};
+				};
+			};
+			buildConfigurationList = CEAD76B02B6F6AF30035C0E5 /* Build configuration list for PBXProject "passwd" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEAD76AC2B6F6AF30035C0E5;
+			productRefGroup = CEAD76AC2B6F6AF30035C0E5;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEAD76B42B6F6AF30035C0E5 /* passwd */,
+				CEAD76C52B6F6AF50035C0E5 /* passwdTests */,
+				CEAD76CF2B6F6AF50035C0E5 /* passwdUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEAD76B32B6F6AF30035C0E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAD76C02B6F6AF50035C0E5 /* Preview Assets.xcassets in Resources */,
+				CEAD76BD2B6F6AF50035C0E5 /* Assets.xcassets in Resources */,
+				CEAD76EA2B708B490035C0E5 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76C42B6F6AF50035C0E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76CE2B6F6AF50035C0E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEAD76B12B6F6AF30035C0E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1D0EF82B81F6E200302812 /* RequestError.swift in Sources */,
+				CE1D0EF02B81CC7200302812 /* LoginInfoCheck.swift in Sources */,
+				CE1D0EFF2B84706A00302812 /* DeletePasswdResponse.swift in Sources */,
+				CE1D0EF42B81E20400302812 /* ScreenType.swift in Sources */,
+				CE362EC72B83271F007634AF /* RequestHelper.swift in Sources */,
+				CE362ECB2B834384007634AF /* UpdateGroupResponse.swift in Sources */,
+				CE1D0EFD2B84422800302812 /* NewPasswdResponse.swift in Sources */,
+				CE1D0EEC2B81AC7900302812 /* UserInfo.swift in Sources */,
+				CE362EC42B826ACF007634AF /* SignupResponse.swift in Sources */,
+				CE362ED22B83A022007634AF /* AESUtil.swift in Sources */,
+				CE362ECD2B834C27007634AF /* DeleteGroupResponse.swift in Sources */,
+				CE53B8182B720978003D4EF0 /* Group.swift in Sources */,
+				CEBF196F2B727700003BEC4B /* PasswdsView.swift in Sources */,
+				CEAD76B92B6F6AF30035C0E5 /* passwdApp.swift in Sources */,
+				CE362ED02B8362D7007634AF /* UpdatePasswdResponse.swift in Sources */,
+				CE53B8192B721ABB003D4EF0 /* SideGroupsView.swift in Sources */,
+				CEAD76EE2B70BD1F0035C0E5 /* Passwd.swift in Sources */,
+				CE362EBF2B8256DB007634AF /* SignupView.swift in Sources */,
+				CEAD76E42B7086310035C0E5 /* DataModel.swift in Sources */,
+				CE362EC92B833B5E007634AF /* NewGroupResponse.swift in Sources */,
+				CEAD76F62B70D8350035C0E5 /* AESWrapper.mm in Sources */,
+				CE16C8662B735BBC00C6343B /* LoginView.swift in Sources */,
+				CEAD76EC2B70BB920035C0E5 /* Constants.swift in Sources */,
+				CEC13F2B2B72634A009A42A1 /* RegexHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76C22B6F6AF50035C0E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAD76CB2B6F6AF50035C0E5 /* passwdTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEAD76CC2B6F6AF50035C0E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAD76D72B6F6AF50035C0E5 /* passwdUITestsLaunchTests.swift in Sources */,
+				CEAD76D52B6F6AF50035C0E5 /* passwdUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEAD76C82B6F6AF50035C0E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEAD76B42B6F6AF30035C0E5 /* passwd */;
+			targetProxy = CEAD76C72B6F6AF50035C0E5 /* PBXContainerItemProxy */;
+		};
+		CEAD76D22B6F6AF50035C0E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEAD76B42B6F6AF30035C0E5 /* passwd */;
+			targetProxy = CEAD76D12B6F6AF50035C0E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CEAD76D82B6F6AF50035C0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CEAD76D92B6F6AF50035C0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		CEAD76DB2B6F6AF50035C0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = passwd/passwd.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"passwd/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwd;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "passwd/passwd-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CEAD76DC2B6F6AF50035C0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = passwd/passwd.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"passwd/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwd;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "passwd/passwd-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CEAD76DE2B6F6AF50035C0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwdTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/passwd.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/passwd";
+			};
+			name = Debug;
+		};
+		CEAD76DF2B6F6AF50035C0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwdTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/passwd.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/passwd";
+			};
+			name = Release;
+		};
+		CEAD76E12B6F6AF50035C0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = passwd;
+			};
+			name = Debug;
+		};
+		CEAD76E22B6F6AF50035C0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leslie.passwdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = passwd;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEAD76B02B6F6AF30035C0E5 /* Build configuration list for PBXProject "passwd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAD76D82B6F6AF50035C0E5 /* Debug */,
+				CEAD76D92B6F6AF50035C0E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEAD76DA2B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAD76DB2B6F6AF50035C0E5 /* Debug */,
+				CEAD76DC2B6F6AF50035C0E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEAD76DD2B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwdTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAD76DE2B6F6AF50035C0E5 /* Debug */,
+				CEAD76DF2B6F6AF50035C0E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEAD76E02B6F6AF50035C0E5 /* Build configuration list for PBXNativeTarget "passwdUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAD76E12B6F6AF50035C0E5 /* Debug */,
+				CEAD76E22B6F6AF50035C0E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEAD76AD2B6F6AF30035C0E5 /* Project object */;
+}
