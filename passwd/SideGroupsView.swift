@@ -52,6 +52,11 @@ struct SideGroupsView: View {
                                 Button (
                                     action: {
                                         newPasswdGroupId = group.id
+                                        newPasswdTitle = ""
+                                        newPasswdUsername = ""
+                                        newPasswdPassword = ""
+                                        newPasswdLink = ""
+                                        newPasswdComment = ""
                                         newPasswdAlert.toggle()
                                     },
                                     label: {
@@ -96,8 +101,10 @@ struct SideGroupsView: View {
                                     }
                                 }
                             }
-                            
                     }
+                    .onMove(perform: { source, destination in
+                        print("from \(source) to \(destination)")
+                    })
                 } header: {
                     HStack(spacing: 5) {
                         Text("Groups")

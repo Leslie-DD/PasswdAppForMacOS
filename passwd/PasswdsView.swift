@@ -34,36 +34,49 @@ struct PasswdsView: View {
     var body: some View {
         
         HStack {
-            List(model.currentPasswds, id: \.id) { passwd in
-                PasswdItemView(passwd: passwd, selected: model.currentPasswd?.id == passwd.id) {
-                    model.onPasswdClick(passwd: passwd)
-                }.contextMenu {
-                    Button (
-                        action: {
-                            print("ready to delete \(passwd.title)")
-                            deletePasswd = passwd
-                            confirmDeletePasswdAlert.toggle()
-                        },
-                        label: {
-                            Text("Delete")
-                                .foregroundColor(.red)
+            List(selection: $model.currentPasswdId) {
+                ForEach(model.currentPasswds) { passwd in
+                    Text("\(passwd.title)")
+                        .tag(passwd.id)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .lineLimit(1)
+                        .contextMenu {
+                            Button (
+                                action: {
+                                    print("ready to delete \(passwd.title)")
+                                    deletePasswd = passwd
+                                    confirmDeletePasswdAlert.toggle()
+                                },
+                                label: {
+                                    Text("Delete")
+                                        .foregroundColor(.red)
+                                }
+                            )
                         }
-                    )
-                }
-                .alert("是否删除\(deletePasswd?.title ?? "该 passwd")", isPresented: $confirmDeletePasswdAlert) {
-                    Button("Cancel", role: .cancel) {
-                    }
-                    
-                    Button("Delete") {
-                        if (deletePasswd != nil) {
-                            model.loadingAlert = true
-                            model.deletePasswd(passwd: deletePasswd!) { result in
-                                deletePasswd = nil
-                                model.loadingAlert = false
+                        .alert("是否删除\(deletePasswd?.title ?? "该 passwd")", isPresented: $confirmDeletePasswdAlert) {
+                            Button("Cancel", role: .cancel) {
+                            }
+                            
+                            Button("Delete") {
+                                if (deletePasswd != nil) {
+                                    model.loadingAlert = true
+                                    model.deletePasswd(passwd: deletePasswd!) { result in
+                                        deletePasswd = nil
+                                        model.loadingAlert = false
+                                    }
+                                }
                             }
                         }
-                    }
                 }
+                .onMove(perform: { source, destination in
+                    print("passwds move \(source) to \(destination)")
+                })
+            }
+//            .listStyle(.inset(alternatesRowBackgrounds: true))
+            .onChange(of: model.currentPasswdId) { oldPasswdId, newPasswdId in
+                model.onPasswdClick(passwdId: newPasswdId)
             }
             
             VStack(spacing: 10) {
@@ -158,27 +171,6 @@ struct PasswdsView: View {
     
 }
 
-struct PasswdItemView : View {
-    var passwd: Passwd
-    var selected: Bool
-    var action: () -> Void
-    
-    var body: some View {
-        Text("\(passwd.title)")
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(selected ? Color.blue : Color.clear)
-            .foregroundColor(selected ? Color.white : Color.primary)
-            .contentShape(RoundedRectangle(cornerRadius: 10))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .lineLimit(1)
-            .truncationMode(.tail)
-            .onTapGesture {
-                action()
-            }
-    }
-}
-
 struct DetailSecureItemView : View {
     
     var value: Binding<String>
@@ -220,11 +212,8 @@ struct CommentView : View {
     var editable: Binding<Bool>
     
     var body: some View {
-        HStack {
-            TextEditor(text: value)
-                .disabled(!editable.wrappedValue)
-        }
-        
+        TextEditor(text: value)
+            .disabled(!editable.wrappedValue)
     }
 }
 
@@ -247,7 +236,7 @@ struct ButtonImageView : View {
         }) {
             Image(systemName: systemName)
                 .frame(maxHeight: 20)
-//                .symbolEffect(.bounce, options:.nonRepeating, value: bounceTrigger)
+            //                .symbolEffect(.bounce, options:.nonRepeating, value: bounceTrigger)
                 .scaleEffect(isHovering ? 1.2 : 1.0)
                 .animation(.easeInOut(duration: 0.2), value: isHovering)
         }

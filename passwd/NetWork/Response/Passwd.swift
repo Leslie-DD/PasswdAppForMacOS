@@ -20,7 +20,7 @@ struct UpdateTime: Codable {
     let year: Int
 }
 
-struct Passwd: Codable {
+struct Passwd: Identifiable, Codable {
     
     init(title: String) {
         self.id = -1

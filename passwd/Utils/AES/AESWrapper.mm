@@ -34,7 +34,7 @@
     NSData* iv = [cipherTextData subdataWithRange:NSMakeRange(0, 16)];
     NSData* data = [cipherTextData subdataWithRange:NSMakeRange(16, [cipherTextData length] - 16)];
 
-    // Prepare a buffer for the decrypted data
+    // Prepare a buffer for the decrypted datawe
     size_t decryptedDataBufferSize = [data length];
     void* decryptedDataBuffer = malloc(decryptedDataBufferSize);
 

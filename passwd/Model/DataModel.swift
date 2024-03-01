@@ -23,6 +23,7 @@ class DataModel: ObservableObject {
     @Published var currentGroupId: Int = -1
     @Published var currentPasswds: [Passwd] = []
     @Published var currentPasswd: Passwd?
+    @Published var currentPasswdId: Int = -1
     
     @Published var title: String = ""
     @Published var usernameString: String = ""
@@ -456,6 +457,7 @@ class DataModel: ObservableObject {
     }
     
     func onPasswdClick(passwd: Passwd) {
+        print("onPasswdClick: \(passwd)")
         updateCurrentPasswd(passwd: passwd)
     }
     
@@ -484,6 +486,7 @@ class DataModel: ObservableObject {
     
     func updateCurrentPasswd(passwd: Passwd?) {
         self.currentPasswd = passwd
+        self.currentPasswdId = passwd == nil ? -1 : passwd!.id
         if (passwd == nil) {
             self.title = ""
             self.usernameString = ""
