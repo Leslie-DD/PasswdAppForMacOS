@@ -27,18 +27,20 @@ struct SignupView: View {
     var body: some View {
         VStack (spacing: 16) {
             TextField("Username", text: $username)
-                .background(Color(.customGray))
-                .cornerRadius(5.0)
+                .textFieldStyle(PlainTextFieldStyle())
+                .padding()
+                .background(TextBorder(editable: true))
             
             SecureField("Password", text: $password)
-                .background(Color(.customGray))
-                .cornerRadius(5.0)
-                .frame(maxWidth: 200)
+                .textFieldStyle(PlainTextFieldStyle())
+                .padding()
+                .background(TextBorder(editable: true))
+                .frame(maxWidth: 230)
             
             HStack {
                 TextField("IP Address", text: $ipAddress)
-                    .background(Color(.customGray))
-                    .cornerRadius(5.0)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .padding()
                     .frame(maxWidth: 150)
                     .onChange(of: ipAddress) { oldValue, newValue in
                         if !LoginInfoCheck.shared.isValidIpAddress(ipAddress: newValue) {
@@ -55,9 +57,9 @@ struct SignupView: View {
                     }
                 
                 TextField("Host", text: $host)
-                    .background(Color(.customGray))
-                    .cornerRadius(5.0)
-                    .frame(maxWidth: 60)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .padding()
+                    .frame(maxWidth: 80)
                     .onChange(of: host) { oldValue, newValue in
                         if !LoginInfoCheck.shared.isValidHost(hostStr: host) {
                             host = ""
@@ -72,7 +74,8 @@ struct SignupView: View {
                         )
                     }
             }
-            .frame(maxWidth: 200)
+            .frame(maxWidth: 230)
+            .background(TextBorder(editable: true))
             
             Button(action: {
                 print("Sign up")
@@ -104,7 +107,7 @@ struct SignupView: View {
             }) {
                 Text("Sign up")
                     .font(.headline)
-                    .frame(maxWidth: 200)
+                    .frame(maxWidth: 230)
                     .frame(height: 40)
             }
             .foregroundColor(.white)
@@ -131,7 +134,7 @@ struct SignupView: View {
             }
         }
         .frame(alignment: .leading)
-        .frame(maxWidth: 200, maxHeight: .infinity, alignment: .center)
+        .frame(maxWidth: 230, maxHeight: .infinity, alignment: .center)
         .padding(.bottom, 40)
         .navigationTitle("Signup")
         

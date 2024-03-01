@@ -24,6 +24,7 @@
 		CE362ED22B83A022007634AF /* AESUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362ED12B83A022007634AF /* AESUtil.swift */; };
 		CE53B8182B720978003D4EF0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53B8172B720978003D4EF0 /* Group.swift */; };
 		CE53B8192B721ABB003D4EF0 /* SideGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */; };
+		CE96C9F02B93707100A33688 /* CommonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C9EF2B93707100A33688 /* CommonComponent.swift */; };
 		CEAD76B92B6F6AF30035C0E5 /* passwdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */; };
 		CEAD76BD2B6F6AF50035C0E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD76BC2B6F6AF50035C0E5 /* Assets.xcassets */; };
 		CEAD76C02B6F6AF50035C0E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD76BF2B6F6AF50035C0E5 /* Preview Assets.xcassets */; };
@@ -74,8 +75,9 @@
 		CE362ECC2B834C27007634AF /* DeleteGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponse.swift; sourceTree = "<group>"; };
 		CE362ECF2B8362D7007634AF /* UpdatePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswdResponse.swift; sourceTree = "<group>"; };
 		CE362ED12B83A022007634AF /* AESUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESUtil.swift; sourceTree = "<group>"; };
-		CE4AD4A12B8DB641006EBB95 /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = passwd.app; path = "/Users/leslie/Library/Mobile Documents/com~apple~CloudDocs/DYF/Coding/xcode/passwd/build/Debug/passwd.app"; sourceTree = "<absolute>"; };
 		CE53B8172B720978003D4EF0 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		CE96C9EE2B93704800A33688 /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = passwd.app; path = "/Users/leslie/Library/Mobile Documents/com~apple~CloudDocs/DYF/Coding/xcode/passwd/build/Debug/passwd.app"; sourceTree = "<absolute>"; };
+		CE96C9EF2B93707100A33688 /* CommonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonComponent.swift; sourceTree = "<group>"; };
 		CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdApp.swift; sourceTree = "<group>"; };
 		CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideGroupsView.swift; sourceTree = "<group>"; };
 		CEAD76BC2B6F6AF50035C0E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				CEAD76C12B6F6AF50035C0E5 /* passwd.entitlements */,
 				CEAD77452B70EC010035C0E5 /* passwd-Bridging-Header.h */,
 				CEAD76BE2B6F6AF50035C0E5 /* Preview Content */,
+				CE96C9EF2B93707100A33688 /* CommonComponent.swift */,
 			);
 			path = passwd;
 			sourceTree = "<group>";
@@ -268,7 +271,7 @@
 			);
 			name = passwd;
 			productName = passwd;
-			productReference = CE4AD4A12B8DB641006EBB95 /* passwd.app */;
+			productReference = CE96C9EE2B93704800A33688 /* passwd.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEAD76C52B6F6AF50035C0E5 /* passwdTests */ = {
@@ -392,6 +395,7 @@
 				CE1D0EFD2B84422800302812 /* NewPasswdResponse.swift in Sources */,
 				CE1D0EEC2B81AC7900302812 /* UserInfo.swift in Sources */,
 				CE362EC42B826ACF007634AF /* SignupResponse.swift in Sources */,
+				CE96C9F02B93707100A33688 /* CommonComponent.swift in Sources */,
 				CE362ED22B83A022007634AF /* AESUtil.swift in Sources */,
 				CE362ECD2B834C27007634AF /* DeleteGroupResponse.swift in Sources */,
 				CE53B8182B720978003D4EF0 /* Group.swift in Sources */,

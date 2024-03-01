@@ -30,8 +30,7 @@ struct LoginView: View {
             VStack {
                 HStack {
                     TextField("Username", text: $model.loginUsername)
-                        .background(Color(.customGray))
-                        .cornerRadius(5.0)
+                        .textFieldStyle(PlainTextFieldStyle())
                     
                     Menu {
                         ForEach(loginInfoes, id: \.self){ loginInfo in
@@ -55,6 +54,8 @@ struct LoginView: View {
                     }
                     .frame(width: 30)
                 }
+                .padding(8)
+                .background(TextBorder(editable: true))
                 
                 VStack {
                     Toggle("remember username", isOn: $model.rememberUsernameStatusOn)
@@ -67,12 +68,15 @@ struct LoginView: View {
                                 model.rememberAddressStatusOn = false
                             }
                         }
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 SecureField("Password", text: $model.loginPassword)
-                    .background(Color(.customGray))
-                    .cornerRadius(5.0)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .padding(8)
+                    .background(TextBorder(editable: true))
                     .frame(maxWidth: 200)
+                
                 VStack {
                     Toggle("remember password", isOn: $model.rememberPasswordStatusOn)
                         .frame(alignment: .leading)
@@ -82,12 +86,15 @@ struct LoginView: View {
                                 model.rememberPasswordStatusOn = true
                             }
                         }
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 SecureField("Secret Key", text: $model.loginSecretKey)
-                    .background(Color(.customGray))
-                    .cornerRadius(5.0)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .padding(8)
+                    .background(TextBorder(editable: true))
                     .frame(maxWidth: 200)
+                
                 VStack {
                     Toggle("remember secret key", isOn: $model.rememberSecretKeyStatusOn)
                         .frame(alignment: .leading)
@@ -101,8 +108,7 @@ struct LoginView: View {
                 
                 HStack {
                     TextField("IP Address", text: $model.loginIpAddress)
-                        .background(Color(.customGray))
-                        .cornerRadius(5.0)
+                        .textFieldStyle(PlainTextFieldStyle())
                         .frame(maxWidth: 150)
                         .onChange(of: model.loginIpAddress) { oldValue, newValue in
                             if !LoginInfoCheck.shared.isValidIpAddress(ipAddress: newValue) {
@@ -112,9 +118,8 @@ struct LoginView: View {
                         }
                     
                     TextField("Host", text: $model.loginHost)
-                        .background(Color(.customGray))
-                        .cornerRadius(5.0)
-                        .frame(maxWidth: 60)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .frame(maxWidth: 50)
                         .onChange(of: model.loginHost) { oldValue, newValue in
                             if !LoginInfoCheck.shared.isValidHost(hostStr: model.loginHost) {
                                 model.loginHost = ""
@@ -122,6 +127,8 @@ struct LoginView: View {
                             }
                         }
                 }
+                .padding(8)
+                .background(TextBorder(editable: true))
                 .frame(maxWidth: 200)
                 
                 VStack {

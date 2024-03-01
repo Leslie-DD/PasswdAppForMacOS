@@ -40,7 +40,6 @@ struct SideGroupsView: View {
                     ForEach(model.groups) { group in
                         Text(group.groupName)
                             .tag(group.id)
-                            .foregroundStyle(model.currentGroupId == group.id ? Color.primary : .gray)
                             .contextMenu {
                                 Button("Refactor") {
                                     refactorGroupId = group.id
@@ -108,8 +107,7 @@ struct SideGroupsView: View {
                 } header: {
                     HStack(spacing: 5) {
                         Text("Groups")
-                            .foregroundStyle(Color.primary)
-                            .font(.title3)
+                            .foregroundStyle(Color.gray)
                             .padding(.vertical, 10)
                             .alert("分组 [\(deleteGroupName)] 下的所有密码都会被删除，确定删除吗?", isPresented: $deleteGroupAlert) {
                                 Text("Warning: 分组下的所有密码都会被删除")
@@ -159,13 +157,19 @@ struct SideGroupsView: View {
             .onChange(of: model.currentGroupId) { oldGroupId, newGroupId in
                 model.onGroupClick(groupId: newGroupId)
             }
-
-            Button("Log out", systemImage: "rectangle.portrait.and.arrow.forward") {
+            
+            Button(action: {
                 model.currentScreen = .Login
+            }) {
+                HStack {
+                    Image(systemName: "rectangle.portrait.and.arrow.forward")
+                        .foregroundColor(.accentColor) // 设置图像的颜色为蓝色
+                    Text("Log out")
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .tint(.gray)
+            .tint(.accentColor)
             .buttonStyle(.plain)
             
         } detail: {

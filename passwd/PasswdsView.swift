@@ -33,7 +33,7 @@ struct PasswdsView: View {
     
     var body: some View {
         
-        HStack {
+        HStack(spacing: 10) {
             List(selection: $model.currentPasswdId) {
                 ForEach(model.currentPasswds) { passwd in
                     Text("\(passwd.title)")
@@ -89,7 +89,6 @@ struct PasswdsView: View {
                 
                 HStack {
                     Spacer()
-                    
                     ButtonImageViewWithReplace(isOrigin: $editButtonImageViewEnabled, originSystemName: "square.and.pencil", replacedSystemName: "square.and.arrow.up") {
                         if (editButtonImageViewEnabled) {
                             detailEditable = true
@@ -154,10 +153,11 @@ struct PasswdsView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 10)
             .padding(.top)
             .padding([.bottom], 6)
             .frame(maxHeight: .infinity, alignment: .top)
+            .background(Color.customBackground)
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .background(
@@ -184,24 +184,36 @@ struct DetailSecureItemView : View {
     @State private var isSecured: Bool = true
     
     var body: some View {
-        HStack {
-            if (enableSecure && isSecured) {
-                SecureField(hint, text: value)
-                    .disabled(!editable.wrappedValue)
-            } else {
-                TextField(hint, text: value)
-                    .disabled(!editable.wrappedValue)
-            }
-            if (enableSecure) {
-                ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "eye") {
-                    isSecured.toggle()
+        VStack {
+            HStack {
+                if (enableSecure && isSecured) {
+                    SecureField(hint, text: value)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .padding(.top, 6)
+                        .padding(.horizontal, 12)
+                        .disabled(!editable.wrappedValue)
+                } else {
+                    TextField(hint, text: value)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .padding(.top, 6)
+                        .padding(.horizontal, 12)
+                        .disabled(!editable.wrappedValue)
                 }
-                
-                ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "doc.on.doc") {
-                    NSPasteboard.general.clearContents()
-                    NSPasteboard.general.setString(value.wrappedValue, forType: .string)
+                if (enableSecure) {
+                    ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "eye") {
+                        isSecured.toggle()
+                    }
+                    
+                    ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "doc.on.doc") {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(value.wrappedValue, forType: .string)
+                    }
+                    .padding(.trailing, 6)
                 }
             }
+            Divider()
+                .frame(height: 1)
+                .background(Color.customGray)
         }
     }
 }
@@ -212,8 +224,13 @@ struct CommentView : View {
     var editable: Binding<Bool>
     
     var body: some View {
-        TextEditor(text: value)
-            .disabled(!editable.wrappedValue)
+            TextEditor(text: value)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 10)
+                .textEditorStyle(PlainTextEditorStyle())
+                .background(TextBorder(editable: editable.wrappedValue))
+                .disabled(!editable.wrappedValue)
+        
     }
 }
 
