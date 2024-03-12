@@ -203,13 +203,13 @@ struct DetailSecureItemView : View {
                     ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "eye") {
                         isSecured.toggle()
                     }
-                    
-                    ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "doc.on.doc") {
-                        NSPasteboard.general.clearContents()
-                        NSPasteboard.general.setString(value.wrappedValue, forType: .string)
-                    }
-                    .padding(.trailing, 6)
                 }
+                
+                ButtonImageView(enabled: $buttonImageViewEnabled, systemName: "doc.on.doc") {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(value.wrappedValue, forType: .string)
+                }
+                .padding(.trailing, 6)
             }
             Divider()
                 .frame(height: 1)
