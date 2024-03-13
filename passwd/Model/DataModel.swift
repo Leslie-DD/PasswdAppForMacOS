@@ -190,6 +190,15 @@ class DataModel: ObservableObject {
                     self.groupsPasswdsMap[passwd.value.groupId]?.append(passwd.value)
                 }
                 
+                for passwds in self.groupsPasswdsMap {
+                    var tempPasswds: [Passwd] = []
+                    passwds.value.forEach { p in
+                        tempPasswds.append(p)
+                    }
+                    tempPasswds.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
+                    self.groupsPasswdsMap[passwds.key] = tempPasswds
+                }
+                
                 for group in groupResponse.data {
                     groups.append(group)
                     groupsMap[group.id] = group
@@ -197,6 +206,8 @@ class DataModel: ObservableObject {
                         self.groupsPasswdsMap[group.id] = []
                     }
                 }
+                
+                groups.sort { $0.groupName.localizedCompare($1.groupName) == .orderedAscending }
                                 
                 DispatchQueue.main.async {
                     self.groups = groups

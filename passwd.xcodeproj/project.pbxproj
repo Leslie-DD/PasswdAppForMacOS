@@ -67,6 +67,7 @@
 		CE1D0EFA2B843B6900302812 /* passwdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = passwdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswdResponse.swift; sourceTree = "<group>"; };
 		CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePasswdResponse.swift; sourceTree = "<group>"; };
+		CE1E59A32BA0782400984FA4 /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = passwd.app; path = "/Users/leslie/Library/Mobile Documents/com~apple~CloudDocs/DYF/Coding/xcode/passwd/build/Debug/passwd.app"; sourceTree = "<absolute>"; };
 		CE362EBE2B8256DB007634AF /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		CE362EC32B826ACF007634AF /* SignupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupResponse.swift; sourceTree = "<group>"; };
 		CE362EC62B83271F007634AF /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
@@ -76,7 +77,6 @@
 		CE362ECF2B8362D7007634AF /* UpdatePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswdResponse.swift; sourceTree = "<group>"; };
 		CE362ED12B83A022007634AF /* AESUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESUtil.swift; sourceTree = "<group>"; };
 		CE53B8172B720978003D4EF0 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		CE96C9EE2B93704800A33688 /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = passwd.app; path = "/Users/leslie/Library/Mobile Documents/com~apple~CloudDocs/DYF/Coding/xcode/passwd/build/Debug/passwd.app"; sourceTree = "<absolute>"; };
 		CE96C9EF2B93707100A33688 /* CommonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonComponent.swift; sourceTree = "<group>"; };
 		CEAD76B82B6F6AF30035C0E5 /* passwdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwdApp.swift; sourceTree = "<group>"; };
 		CEAD76BA2B6F6AF30035C0E5 /* SideGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideGroupsView.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 			);
 			name = passwd;
 			productName = passwd;
-			productReference = CE96C9EE2B93704800A33688 /* passwd.app */;
+			productReference = CE1E59A32BA0782400984FA4 /* passwd.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEAD76C52B6F6AF50035C0E5 /* passwdTests */ = {
