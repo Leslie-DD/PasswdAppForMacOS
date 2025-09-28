@@ -111,7 +111,7 @@ struct LoginView: View {
                         .textFieldStyle(PlainTextFieldStyle())
                         .frame(maxWidth: 150)
                         .onChange(of: model.loginIpAddress) { oldValue, newValue in
-                            if !LoginInfoCheck.shared.isValidIpAddress(ipAddress: newValue) {
+                            if !InfoChecker.loginInfoCheckerShared.isValidIpAddress(ipAddress: newValue) {
                                 model.loginIpAddress = ""
                                 // Show an error message
                             }
@@ -121,7 +121,7 @@ struct LoginView: View {
                         .textFieldStyle(PlainTextFieldStyle())
                         .frame(maxWidth: 50)
                         .onChange(of: model.loginHost) { oldValue, newValue in
-                            if !LoginInfoCheck.shared.isValidHost(hostStr: model.loginHost) {
+                            if !InfoChecker.loginInfoCheckerShared.isValidHost(hostStr: model.loginHost) {
                                 model.loginHost = ""
                                 // Show an error message
                             }
@@ -143,11 +143,11 @@ struct LoginView: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 
                 Button(action: {
-                    if (LoginInfoCheck.shared.isUsernameValid(username: model.loginUsername)
-                        && LoginInfoCheck.shared.isPasswordValid(password: model.loginPassword)
-                        && LoginInfoCheck.shared.isSecretKeyValid(secretKey: model.loginSecretKey)
-                        && LoginInfoCheck.shared.isIpAddressValid(ipAddress: model.loginIpAddress)
-                        && LoginInfoCheck.shared.isValidHost(hostStr: model.loginHost)) {
+                    if (InfoChecker.loginInfoCheckerShared.isUsernameValid(username: model.loginUsername)
+                        && InfoChecker.loginInfoCheckerShared.isPasswordValid(password: model.loginPassword)
+                        && InfoChecker.loginInfoCheckerShared.isSecretKeyValid(secretKey: model.loginSecretKey)
+                        && InfoChecker.loginInfoCheckerShared.isIpAddressValid(ipAddress: model.loginIpAddress)
+                        && InfoChecker.loginInfoCheckerShared.isValidHost(hostStr: model.loginHost)) {
                         
                         model.loadingAlert = true
                         model.loginByPasswd(
@@ -167,7 +167,7 @@ struct LoginView: View {
                                         currentLoginInfo?.secretKey = model.loginSecretKey
                                         currentLoginInfo?.ip = model.loginIpAddress
                                         currentLoginInfo?.host = Int(model.loginHost) ?? 8081
-                                        currentLoginInfo?.updateTime = LoginInfoCheck.currentTimeStamp
+                                        currentLoginInfo?.updateTime = InfoChecker.currentTimeStamp
                                         currentLoginInfo?.autoLogin = true
                                     } else {
                                         let alreadyInDbUserInfo = loginInfoes.filter {
@@ -184,7 +184,7 @@ struct LoginView: View {
                                             alreadyInDbUserInfo?.secretKey = model.loginSecretKey
                                             alreadyInDbUserInfo?.ip = model.loginIpAddress
                                             alreadyInDbUserInfo?.host = Int(model.loginHost) ?? 8081
-                                            alreadyInDbUserInfo?.updateTime = LoginInfoCheck.currentTimeStamp
+                                            alreadyInDbUserInfo?.updateTime = InfoChecker.currentTimeStamp
                                             alreadyInDbUserInfo?.autoLogin = true
                                         }
                                     }
@@ -216,7 +216,7 @@ struct LoginView: View {
                                             theUserInfoNotNil.ip = model.rememberAddressStatusOn ? model.loginIpAddress : "0.0.0.0"
                                             theUserInfoNotNil.host = model.rememberAddressStatusOn ? Int(model.loginHost) ?? 8080 : 8080
                                             theUserInfoNotNil.autoLogin = false
-                                            theUserInfoNotNil.updateTime = LoginInfoCheck.currentTimeStamp
+                                            theUserInfoNotNil.updateTime = InfoChecker.currentTimeStamp
                                         } else {
                                             print("save Username and others 1")
                                             let theUserInfoNotNil = UserInfo(username: model.loginUsername)
@@ -227,7 +227,7 @@ struct LoginView: View {
                                             theUserInfoNotNil.host = model.rememberAddressStatusOn ? Int(model.loginHost) ?? 8080 : 8080
                                             
                                             theUserInfoNotNil.autoLogin = false
-                                            theUserInfoNotNil.updateTime = LoginInfoCheck.currentTimeStamp
+                                            theUserInfoNotNil.updateTime = InfoChecker.currentTimeStamp
                                             
                                             context.delete(theUserInfoNotNil)
                                             context.insert(theUserInfoNotNil)

@@ -43,7 +43,7 @@ struct SignupView: View {
                     .padding()
                     .frame(maxWidth: 150)
                     .onChange(of: ipAddress) { oldValue, newValue in
-                        if !LoginInfoCheck.shared.isValidIpAddress(ipAddress: newValue) {
+                        if !InfoChecker.loginInfoCheckerShared.isValidIpAddress(ipAddress: newValue) {
                             ipAddress = ""
                             // Show an error message
                         }
@@ -61,7 +61,7 @@ struct SignupView: View {
                     .padding()
                     .frame(maxWidth: 80)
                     .onChange(of: host) { oldValue, newValue in
-                        if !LoginInfoCheck.shared.isValidHost(hostStr: host) {
+                        if !InfoChecker.loginInfoCheckerShared.isValidHost(hostStr: host) {
                             host = ""
                             // Show an error message
                         }
@@ -80,8 +80,8 @@ struct SignupView: View {
             Button(action: {
                 print("Sign up")
                 
-                if (LoginInfoCheck.shared.isUsernameValid(username: username)
-                    && LoginInfoCheck.shared.isPasswordValid(password: password)) {
+                if (InfoChecker.loginInfoCheckerShared.isUsernameValid(username: username)
+                    && InfoChecker.loginInfoCheckerShared.isPasswordValid(password: password)) {
                     
                     model.loadingAlert = true
                     model.signup(username: username, password: password, ip: ipAddress, host: host) { result in

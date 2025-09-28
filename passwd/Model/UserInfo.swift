@@ -24,7 +24,7 @@ class UserInfo {
         self.secretKey = nil
         self.ip = nil
         self.host = nil
-        self.updateTime = LoginInfoCheck.currentTimeStamp
+        self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = false
     }
     
@@ -34,7 +34,7 @@ class UserInfo {
         self.secretKey = nil
         self.ip = nil
         self.host = nil
-        self.updateTime = LoginInfoCheck.currentTimeStamp
+        self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = false
     }
     
@@ -44,7 +44,7 @@ class UserInfo {
         self.secretKey = secretKey
         self.ip = nil
         self.host = nil
-        self.updateTime = LoginInfoCheck.currentTimeStamp
+        self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = false
     }
     
@@ -54,7 +54,7 @@ class UserInfo {
         self.secretKey = secretKey
         self.ip = ip
         self.host = host
-        self.updateTime = LoginInfoCheck.currentTimeStamp
+        self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = false
     }
     
@@ -64,7 +64,7 @@ class UserInfo {
         self.secretKey = secretKey
         self.ip = ip
         self.host = host
-        self.updateTime = LoginInfoCheck.currentTimeStamp
+        self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = true
     }
     

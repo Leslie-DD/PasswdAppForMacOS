@@ -88,9 +88,16 @@ class DataModel: ObservableObject {
                     } else {
                         return
                     }
+                } else {
+                    if (!lastSearchStr.isEmpty && lastSearchStr == str) {
+                        print("lastSearchStr == str, won't update")
+                        return
+                    }
                 }
                 
                 var searchResult: [Passwd] = []
+                
+                print("sink: \(str)")
             
                 let pattern = "^.*(?i)\(str).*"
                 let matcher = RegexHelper(pattern)
@@ -555,6 +562,7 @@ class DataModel: ObservableObject {
         self.rememberPasswordStatusOn = !self.loginPassword.isEmpty
         self.rememberSecretKeyStatusOn = !self.loginSecretKey.isEmpty
         self.rememberAddressStatusOn = !self.loginIpAddress.isEmpty && !self.loginHost.isEmpty
+        
         
         self.currentScreen = .Login
     }

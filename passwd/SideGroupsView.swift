@@ -32,6 +32,8 @@ struct SideGroupsView: View {
     @State private var newPasswdLink: String = ""
     @State private var newPasswdComment: String = ""
     
+    @State private var usernameLimitAlert: Bool = false
+    
     var body: some View {
         NavigationSplitView {
             
@@ -92,7 +94,7 @@ struct SideGroupsView: View {
                                 }
                                 
                                 Button("Refactor") {
-                                    if (LoginInfoCheck.shared.isUsernameValid(username: refactorGroupName)) {
+                                    if (InfoChecker.loginInfoCheckerShared.isUsernameValid(username: refactorGroupName)) {
                                         model.loadingAlert = true
                                         model.updateGroup(groupId: refactorGroupId, groupName: refactorGroupName, groupComment: refactorGroupComment) { result in
                                             model.loadingAlert = false
@@ -143,7 +145,7 @@ struct SideGroupsView: View {
                             }
                             
                             Button("Add") {
-                                if (LoginInfoCheck.shared.isUsernameValid(username: self.newGroupName, checkSpace: false)) {
+                                if (InfoChecker.loginInfoCheckerShared.isUsernameValid(username: self.newGroupName, checkSpace: false)) {
                                     model.loadingAlert = true
                                     model.newGroup(groupName: self.newGroupName, groupComment: self.newGroupComment) { result in
                                         model.loadingAlert = false
@@ -204,16 +206,21 @@ struct SideGroupsView: View {
                     }
                     
                     Button("Add") {
-                        if (LoginInfoCheck.shared.isUsernameValid(username: self.newPasswdTitle, checkSpace: false)) {
+                        if (InfoChecker.passwdInfoCheckerShared.isUsernameValid(username: self.newPasswdTitle, checkSpace: false)) {
                             model.loadingAlert = true
                             let passwd = Passwd(id: -1, userId: model.userId, groupId: self.newPasswdGroupId, title: newPasswdTitle, usernameString: newPasswdUsername, passwordString: newPasswdPassword, link: newPasswdLink, comment: newPasswdComment)
                             
                             model.newPasswd(passwd: passwd) { result in
                                 model.loadingAlert = false
                             }
+                        } else {
+                            usernameLimitAlert.toggle()
                         }
                     }
                 }
+            .alert("Username not valid", isPresented: $usernameLimitAlert) {
+                Text("Username 不能为空并且长度不能超过 64")
+            }
         }
         .navigationTitle(model.currentGroup?.groupName ?? "")
     }

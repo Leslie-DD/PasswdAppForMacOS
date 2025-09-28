@@ -7,8 +7,8 @@
 
 import Foundation
 
-class InfoCheck {
-    static let shared = InfoCheck()
+class InfoChecker {
+    static let loginInfoCheckerShared = InfoChecker()
     
     func isUsernameValid(username: String?, checkSpace: Bool = true) -> Bool {
         guard username != nil else {

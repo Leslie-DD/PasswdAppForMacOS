@@ -7,8 +7,16 @@
 
 import Foundation
 
-class InfoCheck {
-    static let shared = InfoCheck()
+class InfoChecker {
+    
+    private var countLimit: Int = 16
+    
+    init(countLimit: Int) {
+        self.countLimit = countLimit
+    }
+    
+    static let loginInfoCheckerShared = InfoChecker(countLimit: 16)
+    static let passwdInfoCheckerShared = InfoChecker(countLimit: 64)
     
     func isUsernameValid(username: String?, checkSpace: Bool = true) -> Bool {
         guard username != nil else {
@@ -23,7 +31,7 @@ class InfoCheck {
         }
         
         print("username.count: \(username!.count)")
-        return username!.count <= 16 && username!.count > 0
+        return username!.count <= countLimit && username!.count > 0
     }
     
     func isPasswordValid(password: String?) -> Bool {
@@ -37,7 +45,7 @@ class InfoCheck {
         }
         
         print("password.count: \(password!.count)")
-        return password!.count <= 16 && password!.count > 0
+        return password!.count <= countLimit && password!.count > 0
     }
     
     func isSecretKeyValid(secretKey: String?) -> Bool {
