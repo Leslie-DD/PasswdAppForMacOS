@@ -29,7 +29,7 @@ struct passwdApp: App {
                     SignupView()
                         .environmentObject(model)
                 case .Passwds:
-                    SideGroupsView()
+                    ContentView()
                         .environmentObject(model)
                 case .Settings:
                     LoginView()
