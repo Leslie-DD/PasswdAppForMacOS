@@ -102,6 +102,22 @@ class RequestHelper {
         }
     }
     
+    // 移动Group到指定位置
+    static func moveGroup(params: [String: String], completion: @escaping (Result<String?, RequestError>) -> Void) {
+        postRequest(token: self.token, params: params, uri: Constants.moveGroup) { (result: Result<MoveGroupResponse, RequestError>) in
+            switch result {
+            case .success(let moveGroupResponse):
+                if (moveGroupResponse.success) {
+                    completion(.success(moveGroupResponse.data))
+                } else {
+                    completion(.failure(.requestFailed(moveGroupResponse.msg)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     static func newPasswd(params: [String: String], completion: @escaping (Result<Int, RequestError>) -> Void) {
         postRequest(token: self.token, params: params, uri: Constants.newPasswd) { (result: Result<NewPasswdResponse, RequestError>) in
             switch result {

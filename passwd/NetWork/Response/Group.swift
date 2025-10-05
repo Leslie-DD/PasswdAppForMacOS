@@ -12,6 +12,7 @@ struct Group: Identifiable, Codable {
     let userId: Int
     var groupName: String
     var groupComment: String?
+    let sortOrder: Int64?
 }
 
 struct GroupResponse: Codable {

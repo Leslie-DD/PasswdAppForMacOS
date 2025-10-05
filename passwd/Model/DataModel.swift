@@ -184,6 +184,9 @@ class DataModel: ObservableObject {
     
     func fetchGroups(userId: Int, token: String?, completion: @escaping (Result<String, RequestError>) -> Void) {
         print("fetchGroups")
+        for passwd in self.passwdsMap {
+            self.groupsPasswdsMap[passwd.value.groupId] = nil
+        }
         RequestHelper.fetchGroups { result in
             switch result {
             case .success(let groupResponse):
@@ -214,7 +217,18 @@ class DataModel: ObservableObject {
                     }
                 }
                 
-                groups.sort { $0.groupName.localizedCompare($1.groupName) == .orderedAscending }
+                // 使用sortOrder排序，如果sortOrder为nil则按名称排序
+                groups.sort { group1, group2 in
+                    if let sortOrder1 = group1.sortOrder, let sortOrder2 = group2.sortOrder {
+                        return sortOrder1 < sortOrder2
+                    } else if group1.sortOrder != nil {
+                        return true
+                    } else if group2.sortOrder != nil {
+                        return false
+                    } else {
+                        return group1.groupName.localizedCompare(group2.groupName) == .orderedAscending
+                    }
+                }
                                 
                 DispatchQueue.main.async {
                     self.groups = groups
@@ -245,7 +259,7 @@ class DataModel: ObservableObject {
             switch result {
             case .success(let groupId):
                 DispatchQueue.main.async {
-                    let newGroup = Group(id: groupId, userId: self.userId, groupName: groupName, groupComment: "")
+                    let newGroup = Group(id: groupId, userId: self.userId, groupName: groupName, groupComment: "", sortOrder: nil)
                     self.groups.append(newGroup)
                     self.groupsMap[newGroup.id] = newGroup
                     self.onGroupClick(groupId: newGroup.id)
@@ -325,6 +339,39 @@ class DataModel: ObservableObject {
                             self.currentGroupId = -1
                         }
                         completion(.success(deleteGroup!))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func moveGroup(groupId: Int, afterGroupId: Int?, completion: @escaping (Result<String, RequestError>) -> Void) {
+        var params: [String: String] = [
+            "group_id": String(groupId),
+            "user_id": String(self.userId)
+        ]
+        
+        if let afterGroupId = afterGroupId {
+            if afterGroupId == -1 {
+                // 移动到末尾
+                params["after_group_id"] = "last"
+            } else {
+                params["after_group_id"] = String(afterGroupId)
+            }
+        }
+        
+        RequestHelper.moveGroup(params: params) { result in
+            switch result {
+            case .success(_):
+                // 移动成功后重新获取groups列表以更新排序
+                self.fetchGroups(userId: self.userId, token: RequestHelper.token) { fetchResult in
+                    switch fetchResult {
+                    case .success(_):
+                        completion(.success("Group移动成功"))
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
                 }
             case .failure(let error):

@@ -39,6 +39,10 @@ class Constants {
         baseUrl + "passwd/deleteGroupById.do?"
     }
     
+    static var moveGroup: String {
+        baseUrl + "passwd/moveGroup.do?"
+    }
+    
     static var newPasswd: String {
         baseUrl + "passwd/newPasswd.do?"
     }

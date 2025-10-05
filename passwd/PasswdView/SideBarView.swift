@@ -40,8 +40,8 @@ struct SideBarView: View {
                         deleteGroupAlert: $deleteGroupAlert
                     )
                 }
-                .onMove(perform: { source, destination in
-                    print("from \(source) to \(destination)")
+                .onMove(perform: { from, to in
+                    moveGroup(from: from, to: to)
                 })
             } header: {
                 HStack(spacing: 5) {
@@ -110,6 +110,50 @@ struct SideBarView: View {
         .padding()
         .tint(.accentColor)
         .buttonStyle(.plain)
+    }
+    
+    private func moveGroup(from source: IndexSet, to destination: Int) {
+        print("moveGropu from \(source) to \(destination)")
+        guard let sourceIndex = source.first else { return }
+        
+        // 获取要移动的group
+        let movedGroup = model.groups[sourceIndex]
+        
+        // 计算目标位置
+        var afterGroupId: Int? = nil
+        
+        if destination == 0 {
+            // 移动到开头
+            afterGroupId = nil
+        } else if destination >= model.groups.count {
+            // 移动到末尾
+            afterGroupId = -1 // 使用特殊值表示移动到末尾
+        } else {
+            // 移动到指定group之后
+            let targetIndex = destination > sourceIndex ? destination - 1 : destination
+            print("moveGropu targetIndex: \(targetIndex)")
+            if targetIndex < model.groups.count {
+                if targetIndex < sourceIndex {
+                    afterGroupId = model.groups[targetIndex - 1].id
+                } else {
+                    afterGroupId = model.groups[targetIndex].id
+                }
+            }
+        }
+        
+        // 调用API移动group
+        model.loadingAlert = true
+        model.moveGroup(groupId: movedGroup.id, afterGroupId: afterGroupId) { result in
+            DispatchQueue.main.async {
+                model.loadingAlert = false
+                switch result {
+                case .success(_):
+                    print("Group移动成功")
+                case .failure(let error):
+                    print("Group移动失败: \(error)")
+                }
+            }
+        }
     }
 }
 
