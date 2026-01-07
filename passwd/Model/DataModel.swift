@@ -121,8 +121,8 @@ class DataModel: ObservableObject {
                 lastSearchStr = str
                 DispatchQueue.main.async {
                     self.currentGroup = nil
-                    self.currentPasswds = searchResult
-                    self.updateCurrentPasswd(passwd: searchResult.first)
+                    self.currentPasswds = self.sortedPasswds(searchResult)
+                    self.updateCurrentPasswd(passwd: self.currentPasswds.first)
                 }
             }
     }
@@ -233,10 +233,21 @@ class DataModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.groups = groups
                     self.groupsMap = groupsMap
-                    self.currentGroup = groups.first
+                    
+                    if let currentGroup = self.currentGroup,
+                       groups.contains(where: { $0.id == currentGroup.id }) {
+                        if let updatedGroup = groups.first(where: { $0.id == currentGroup.id }) {
+                            self.currentGroup = updatedGroup
+                        }
+                    } else if !groups.isEmpty {
+                        self.currentGroup = groups.first
+                    } else {
+                        self.currentGroup = nil
+                    }
+                    
                     self.currentGroupId = self.currentGroup?.id ?? -1
                     if (self.currentGroup != nil) {
-                        self.currentPasswds = self.groupsPasswdsMap[self.currentGroup?.id ?? -1] ?? []
+                        self.currentPasswds = self.sortedPasswds(self.groupsPasswdsMap[self.currentGroup?.id ?? -1] ?? [])
                     } else {
                         self.currentPasswds = []
                     }
@@ -501,11 +512,85 @@ class DataModel: ObservableObject {
                             groupPasswds?.remove(at: targetIndex)
                             self.groupsPasswdsMap[passwd.groupId] = groupPasswds!
                         }
-                        self.currentPasswds = self.groupsPasswdsMap[passwd.groupId] ?? []
+                        self.currentPasswds = self.sortedPasswds(self.groupsPasswdsMap[passwd.groupId] ?? [])
                         self.updateCurrentPasswd(passwd: nil)
                     }
                     
                     completion(.success(passwd))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func movePasswd(passwdId: Int, afterPasswdId: Int?, completion: @escaping (Result<String, RequestError>) -> Void) {
+        var params: [String: String] = [
+            "passwd_id": String(passwdId),
+            "user_id": String(self.userId),
+            "group_id": String(self.currentGroupId)
+        ]
+        print("movePasswd. passwdId: \(passwdId), groupId: \(self.currentGroupId), afterPasswdId: \(String(describing: afterPasswdId))")
+        
+        if let afterPasswdId = afterPasswdId {
+            if afterPasswdId == -1 {
+                // 移动到末尾
+                params["after_passwd_id"] = "last"
+            } else {
+                params["after_passwd_id"] = String(afterPasswdId)
+            }
+        }
+        
+        RequestHelper.movePasswd(params: params) { result in
+            switch result {
+            case .success(_):
+                print("Passwd移动成功，刷新当前group的passwd列表...")
+                
+                // 使用新的 groupPasswds 接口刷新当前 group 的 passwd 列表
+                self.refreshGroupPasswds(groupId: self.currentGroupId) { refreshResult in
+                    switch refreshResult {
+                    case .success(_):
+                        completion(.success("Passwd移动成功"))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func refreshGroupPasswds(groupId: Int, completion: @escaping (Result<String, RequestError>) -> Void) {
+        let params = [
+            "user_id": String(self.userId),
+            "group_id": String(groupId)
+        ]
+        
+        RequestHelper.fetchGroupPasswds(params: params) { result in
+            switch result {
+            case .success(let passwds):
+                DispatchQueue.main.async {
+                    let sortedPasswds = self.sortedPasswds(passwds)
+                    for passwd in sortedPasswds {
+                        self.passwdsMap[passwd.id] = passwd
+                    }
+                    
+                    self.groupsPasswdsMap[groupId] = sortedPasswds
+                    self.currentPasswds = sortedPasswds
+                    
+                    if let currentPasswd = self.currentPasswd,
+                       sortedPasswds.contains(where: { $0.id == currentPasswd.id }) {
+                        if let updatedPasswd = sortedPasswds.first(where: { $0.id == currentPasswd.id }) {
+                            self.updateCurrentPasswd(passwd: updatedPasswd)
+                        }
+                    } else if !sortedPasswds.isEmpty {
+                        self.updateCurrentPasswd(passwd: sortedPasswds.first)
+                    } else {
+                        self.updateCurrentPasswd(passwd: nil)
+                    }
+                    
+                    completion(.success("刷新成功"))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -537,7 +622,7 @@ class DataModel: ObservableObject {
     func onGroupClick(group: Group) {
         self.currentGroup = group
         self.currentGroupId = group.id
-        self.currentPasswds = groupsPasswdsMap[group.id] ?? []
+        self.currentPasswds = sortedPasswds(groupsPasswdsMap[group.id] ?? [])
         if (self.currentPasswds.isEmpty) {
             updateCurrentPasswd(passwd: nil)
         } else {
@@ -546,6 +631,15 @@ class DataModel: ObservableObject {
                 return
             }
             updateCurrentPasswd(passwd: self.currentPasswds.first)
+        }
+    }
+    
+    // 按 sortOrder 升序排列密码列表的辅助方法
+    private func sortedPasswds(_ passwds: [Passwd]) -> [Passwd] {
+        return passwds.sorted { passwd1, passwd2 in
+            let order1 = passwd1.sortOrder ?? Int.max
+            let order2 = passwd2.sortOrder ?? Int.max
+            return order1 < order2
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PasswdsView.swift
 //  passwd
 //
 //  Created by EvanD on 2025/9/28.
@@ -22,7 +22,7 @@ struct PasswdsView: View {
                     .tag(passwd.id)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(alignment: .leading)
                     .lineLimit(1)
                     .contextMenu {
                         Button (
@@ -53,7 +53,7 @@ struct PasswdsView: View {
                     }
             }
             .onMove(perform: { source, destination in
-                print("passwds move \(source) to \(destination)")
+                movePasswd(from: source, to: destination)
             })
         }
         .onChange(of: model.currentPasswdId) { oldPasswdId, newPasswdId in
@@ -61,4 +61,49 @@ struct PasswdsView: View {
         }
         .navigationTitle(model.currentGroup?.groupName ?? "")
     }
+    
+    private func movePasswd(from source: IndexSet, to destination: Int) {
+        print("movePasswd from \(source) to \(destination)")
+        guard let sourceIndex = source.first else { return }
+        
+        // 获取要移动的passwd
+        let movedPasswd = model.currentPasswds[sourceIndex]
+        
+        // 计算目标位置
+        var afterPasswdId: Int? = nil
+        
+        if destination == 0 {
+            // 移动到开头
+            afterPasswdId = nil
+        } else if destination >= model.currentPasswds.count {
+            // 移动到末尾
+            afterPasswdId = -1 // 使用特殊值表示移动到末尾
+        } else {
+            // 移动到指定passwd之后
+            let targetIndex = destination > sourceIndex ? destination - 1 : destination
+            print("movePasswd targetIndex: \(targetIndex)")
+            if targetIndex < model.currentPasswds.count {
+                if targetIndex < sourceIndex {
+                    afterPasswdId = model.currentPasswds[targetIndex - 1].id
+                } else {
+                    afterPasswdId = model.currentPasswds[targetIndex].id
+                }
+            }
+        }
+        
+        // 调用API移动passwd
+        model.loadingAlert = true
+        model.movePasswd(passwdId: movedPasswd.id, afterPasswdId: afterPasswdId) { result in
+            DispatchQueue.main.async {
+                model.loadingAlert = false
+                switch result {
+                case .success(_):
+                    print("Passwd移动成功")
+                case .failure(let error):
+                    print("Passwd移动失败: \(error)")
+                }
+            }
+        }
+    }
+    
 }

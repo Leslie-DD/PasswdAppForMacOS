@@ -33,8 +33,8 @@ struct Passwd: Identifiable, Codable {
         self.comment = "nil"
         self.updateTime = nil
         self.updateTimeExpose = -1
+        self.sortOrder = nil
     }
-    
     init(id:Int, userId: Int, groupId: Int, title: String, usernameString: String, passwordString: String, link: String, comment: String) {
         self.id = id
         self.userId = userId
@@ -46,6 +46,21 @@ struct Passwd: Identifiable, Codable {
         self.comment = comment
         self.updateTime = nil
         self.updateTimeExpose = -1
+        self.sortOrder = nil
+    }
+    
+    init(id:Int, userId: Int, groupId: Int, title: String, usernameString: String, passwordString: String, link: String, comment: String, sortOrder: Int) {
+        self.id = id
+        self.userId = userId
+        self.groupId = groupId
+        self.title = title
+        self.usernameString = usernameString
+        self.passwordString = passwordString
+        self.link = link
+        self.comment = comment
+        self.updateTime = nil
+        self.updateTimeExpose = -1
+        self.sortOrder = sortOrder
     }
     
     let comment: String
@@ -53,6 +68,7 @@ struct Passwd: Identifiable, Codable {
     let id: Int
     let link: String
     var passwordString: String
+    let sortOrder: Int?
     var title: String
     let updateTime: UpdateTime?
     let updateTimeExpose: Int

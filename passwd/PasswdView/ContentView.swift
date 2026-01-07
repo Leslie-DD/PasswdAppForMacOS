@@ -31,6 +31,7 @@ struct ContentView: View {
         } detail: {
             DetailView()
         }
+        .navigationSplitViewStyle(.balanced)
         .frame(maxHeight: .infinity, alignment: .top)
         .background(
             Button("") {

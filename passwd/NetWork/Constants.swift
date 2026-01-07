@@ -55,6 +55,14 @@ class Constants {
         baseUrl + "passwd/deletePasswdById.do?"
     }
     
+    static var movePasswd: String {
+        baseUrl + "passwd/movePasswd.do?"
+    }
+    
+    static var groupPasswds: String {
+        baseUrl + "passwd/groupPasswds.do?"
+    }
+    
     static func initIpHost(ipHost: String) {
         ip_host = "http://" + ipHost
     }

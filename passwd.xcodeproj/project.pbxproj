@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203006F82F0E7434004CB0F3 /* GroupPasswdsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203006F72F0E742C004CB0F3 /* GroupPasswdsResponse.swift */; };
 		CE16C8662B735BBC00C6343B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16C8652B735BBC00C6343B /* LoginView.swift */; };
 		CE1D0EEC2B81AC7900302812 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EEB2B81AC7900302812 /* UserInfo.swift */; };
 		CE1D0EF02B81CC7200302812 /* InfoChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EEF2B81CC7200302812 /* InfoChecker.swift */; };
@@ -15,6 +16,7 @@
 		CE1D0EFD2B84422800302812 /* NewPasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */; };
 		CE1D0EFF2B84706A00302812 /* DeletePasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */; };
 		CE1D0F002B84706B00302812 /* MoveGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0EFF2B84706B00302812 /* MoveGroupResponse.swift */; };
+		CE1D0F012B84706C00302812 /* MovePasswdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D0F002B84706C00302812 /* MovePasswdResponse.swift */; };
 		CE362EBF2B8256DB007634AF /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EBE2B8256DB007634AF /* SignupView.swift */; };
 		CE362EC42B826ACF007634AF /* SignupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EC32B826ACF007634AF /* SignupResponse.swift */; };
 		CE362EC72B83271F007634AF /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE362EC62B83271F007634AF /* RequestHelper.swift */; };
@@ -57,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		203006F72F0E742C004CB0F3 /* GroupPasswdsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPasswdsResponse.swift; sourceTree = "<group>"; };
 		2088C7822E89248B004292EB /* passwd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = passwd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE16C8652B735BBC00C6343B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE1D0EEB2B81AC7900302812 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswdResponse.swift; sourceTree = "<group>"; };
 		CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePasswdResponse.swift; sourceTree = "<group>"; };
 		CE1D0EFF2B84706B00302812 /* MoveGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveGroupResponse.swift; sourceTree = "<group>"; };
+		CE1D0F002B84706C00302812 /* MovePasswdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovePasswdResponse.swift; sourceTree = "<group>"; };
 		CE362EBE2B8256DB007634AF /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		CE362EC32B826ACF007634AF /* SignupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupResponse.swift; sourceTree = "<group>"; };
 		CE362EC62B83271F007634AF /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		CE362EC22B826AB3007634AF /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				203006F72F0E742C004CB0F3 /* GroupPasswdsResponse.swift */,
 				CE53B8172B720978003D4EF0 /* Group.swift */,
 				CEAD76ED2B70BD1F0035C0E5 /* Passwd.swift */,
 				CE362EC32B826ACF007634AF /* SignupResponse.swift */,
@@ -167,6 +172,7 @@
 				CE1D0EFC2B84422800302812 /* NewPasswdResponse.swift */,
 				CE1D0EFE2B84706900302812 /* DeletePasswdResponse.swift */,
 				CE1D0EFF2B84706B00302812 /* MoveGroupResponse.swift */,
+				CE1D0F002B84706C00302812 /* MovePasswdResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -396,7 +402,9 @@
 				CE1D0EF02B81CC7200302812 /* InfoChecker.swift in Sources */,
 				CE1D0EFF2B84706A00302812 /* DeletePasswdResponse.swift in Sources */,
 				CE1D0F002B84706B00302812 /* MoveGroupResponse.swift in Sources */,
+				CE1D0F012B84706C00302812 /* MovePasswdResponse.swift in Sources */,
 				CE1D0EF42B81E20400302812 /* ScreenType.swift in Sources */,
+				203006F82F0E7434004CB0F3 /* GroupPasswdsResponse.swift in Sources */,
 				CE362EC72B83271F007634AF /* RequestHelper.swift in Sources */,
 				CE362ECB2B834384007634AF /* UpdateGroupResponse.swift in Sources */,
 				CE1D0EFD2B84422800302812 /* NewPasswdResponse.swift in Sources */,

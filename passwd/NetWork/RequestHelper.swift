@@ -118,6 +118,47 @@ class RequestHelper {
         }
     }
     
+    // 移动Passwd到指定位置
+    static func movePasswd(params: [String: String], completion: @escaping (Result<String?, RequestError>) -> Void) {
+        postRequest(token: self.token, params: params, uri: Constants.movePasswd) { (result: Result<MovePasswdResponse, RequestError>) in
+            switch result {
+            case .success(let movePasswdResponse):
+                if (movePasswdResponse.success) {
+                    completion(.success(movePasswdResponse.data))
+                } else {
+                    completion(.failure(.requestFailed(movePasswdResponse.msg)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // 获取指定group的passwds列表
+    static func fetchGroupPasswds(params: [String: String], completion: @escaping (Result<[Passwd], RequestError>) -> Void) {
+        postRequest(token: self.token, params: params, uri: Constants.groupPasswds) { (result: Result<GroupPasswdsResponse, RequestError>) in
+            switch result {
+            case .success(let groupPasswdsResponse):
+                // 解密密码数据
+                let passwds = groupPasswdsResponse.data.passwds
+                var decodedPasswds: [Passwd] = []
+                for var passwd in passwds {
+                    passwd.title = AESUtil.shared.aesWrapper.decrypt2(withSecretKey: self.secretKey, cipherText: passwd.title) ?? "error"
+                    if (!passwd.passwordString.isEmpty) {
+                        passwd.passwordString = AESUtil.shared.aesWrapper.decrypt2(withSecretKey: self.secretKey, cipherText: passwd.passwordString) ?? "error"
+                    }
+                    if (!passwd.usernameString.isEmpty) {
+                        passwd.usernameString = AESUtil.shared.aesWrapper.decrypt2(withSecretKey: self.secretKey, cipherText: passwd.usernameString) ?? "error"
+                    }
+                    decodedPasswds.append(passwd)
+                }
+                completion(.success(decodedPasswds))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     static func newPasswd(params: [String: String], completion: @escaping (Result<Int, RequestError>) -> Void) {
         postRequest(token: self.token, params: params, uri: Constants.newPasswd) { (result: Result<NewPasswdResponse, RequestError>) in
             switch result {
