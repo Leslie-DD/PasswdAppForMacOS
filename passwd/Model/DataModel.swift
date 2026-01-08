@@ -707,4 +707,46 @@ class DataModel: ObservableObject {
         
         self.currentScreen = .Login
     }
+    
+    // MARK: - Export
+    
+    /// 导出所有密码和分组数据为 JSON 格式
+    func exportAllPasswords() -> Data? {
+        var groupExports: [ExportData.GroupExport] = []
+        for group in groups {
+            let passwds = sortedPasswds(groupsPasswdsMap[group.id] ?? [])
+            groupExports.append(ExportData.GroupExport(group: group, passwds: passwds))
+        }
+        let exportData = ExportData(groups: groupExports)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        do {
+            return try encoder.encode(exportData)
+        } catch {
+            print("导出 JSON 编码失败: \(error)")
+            return nil
+        }
+    }
+}
+
+// MARK: - Export Data Structure
+struct ExportData: Codable {
+    struct GroupExport: Codable {
+        let id: Int
+        let userId: Int
+        var groupName: String
+        var groupComment: String?
+        let sortOrder: Int64?
+        let passwds: [Passwd]
+        
+        init(group: Group, passwds: [Passwd]) {
+            self.id = group.id
+            self.userId = group.userId
+            self.groupName = group.groupName
+            self.groupComment = group.groupComment
+            self.sortOrder = group.sortOrder
+            self.passwds = passwds
+        }
+    }
+    let groups: [GroupExport]
 }

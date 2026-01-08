@@ -7,6 +7,8 @@
 
 
 import SwiftUI
+import UniformTypeIdentifiers
+import AppKit
 
 struct PasswdsView: View {
     
@@ -14,6 +16,9 @@ struct PasswdsView: View {
     
     @State private var confirmDeletePasswdAlert = false
     @State private var deletePasswd: Passwd? = nil
+    
+    @State private var exportErrorAlert = false
+    @State private var exportErrorMessage = ""
     
     var body: some View {
         List(selection: $model.currentPasswdId) {
@@ -60,6 +65,19 @@ struct PasswdsView: View {
             model.onPasswdClick(passwdId: newPasswdId)
         }
         .navigationTitle(model.currentGroup?.groupName ?? "")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: exportPasswords) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .help("导出所有密码到 JSON 文件")
+            }
+        }
+        .alert("导出失败", isPresented: $exportErrorAlert) {
+            Button("确定", role: .cancel) { }
+        } message: {
+            Text(exportErrorMessage)
+        }
     }
     
     private func movePasswd(from source: IndexSet, to destination: Int) {
@@ -101,6 +119,59 @@ struct PasswdsView: View {
                     print("Passwd移动成功")
                 case .failure(let error):
                     print("Passwd移动失败: \(error)")
+                }
+            }
+        }
+    }
+    
+    private func exportPasswords() {
+        DispatchQueue.main.async {
+            guard !self.model.passwdsMap.isEmpty else {
+                self.exportErrorMessage = "没有密码数据可导出"
+                self.exportErrorAlert = true
+                return
+            }
+            
+            guard let jsonData = self.model.exportAllPasswords() else {
+                self.exportErrorMessage = "导出数据失败，请重试"
+                self.exportErrorAlert = true
+                return
+            }
+            
+            let savePanel = NSSavePanel()
+            savePanel.title = "导出密码数据"
+            savePanel.message = "选择保存 JSON 文件的位置"
+            savePanel.nameFieldStringValue = "passwords_export_\(Date().timeIntervalSince1970).json"
+            savePanel.allowedContentTypes = [UTType.json]
+            
+            // 尝试获取当前窗口
+            if let window = NSApplication.shared.keyWindow {
+                savePanel.beginSheetModal(for: window) { response in
+                    if response == .OK, let url = savePanel.url {
+                        do {
+                            try jsonData.write(to: url)
+                            print("导出成功: \(url.path)")
+                        } catch {
+                            DispatchQueue.main.async {
+                                self.exportErrorMessage = "保存文件失败: \(error.localizedDescription)"
+                                self.exportErrorAlert = true
+                            }
+                        }
+                    }
+                }
+            } else {
+                // 如果没有窗口，使用 runModal
+                let response = savePanel.runModal()
+                if response == .OK, let url = savePanel.url {
+                    do {
+                        try jsonData.write(to: url)
+                        print("导出成功: \(url.path)")
+                    } catch {
+                        DispatchQueue.main.async {
+                            self.exportErrorMessage = "保存文件失败: \(error.localizedDescription)"
+                            self.exportErrorAlert = true
+                        }
+                    }
                 }
             }
         }
