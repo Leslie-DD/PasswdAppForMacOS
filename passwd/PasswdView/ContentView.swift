@@ -28,8 +28,10 @@ struct ContentView: View {
         } content: {
             PasswdsView()
                 .searchable(text: $model.searchText, isPresented: $isSearching, prompt: Text("(Command + F) Search"))
+                .navigationSplitViewColumnWidth(min:100, ideal: 200, max: 300)
         } detail: {
             DetailView()
+                .navigationSplitViewColumnWidth(min:200, ideal: 400)
         }
         .navigationSplitViewStyle(.balanced)
         .frame(maxHeight: .infinity, alignment: .top)
