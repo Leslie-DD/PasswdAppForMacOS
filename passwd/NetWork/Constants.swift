@@ -63,7 +63,11 @@ class Constants {
         baseUrl + "passwd/groupPasswds.do?"
     }
     
-    static func initIpHost(ipHost: String) {
-        ip_host = "http://" + ipHost
+    static func initRequestAddress(domain: String, ipHost: String) {
+        if (!domain.isEmpty) {
+            ip_host = "https://" + domain
+        } else {
+            ip_host = "https://" + ipHost
+        }
     }
 }

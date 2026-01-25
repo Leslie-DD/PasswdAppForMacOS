@@ -13,6 +13,7 @@ struct SignupView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var domain: String = ""
     @State private var ipAddress: String = "0.0.0.0"
     @State private var host: String = "8080"
     
@@ -36,6 +37,30 @@ struct SignupView: View {
                 .padding()
                 .background(TextBorder(editable: true))
                 .frame(maxWidth: 230)
+            
+            HStack {
+                Text("https://")
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: 50)
+                
+                TextField("Domain", text: $domain)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .frame(maxWidth: 180)
+                    .onChange(of: domain) { oldValue, newValue in
+              
+                    }
+                    .alert(isPresented: $signupFailureAlert) {
+                        Alert(
+                            title: Text("Sign up failure"),
+                            message: Text("Message: \(failureMsg)"),
+                            dismissButton: .default(Text("Got it!"))
+                        )
+                    }
+            }
+            .padding()
+            .frame(maxWidth: 230)
+            .background(TextBorder(editable: true))
             
             HStack {
                 TextField("IP Address", text: $ipAddress)
@@ -84,7 +109,7 @@ struct SignupView: View {
                     && InfoChecker.loginInfoCheckerShared.isPasswordValid(password: password)) {
                     
                     model.loadingAlert = true
-                    model.signup(username: username, password: password, ip: ipAddress, host: host) { result in
+                    model.signup(username: username, password: password, domain: domain, ip: ipAddress, host: host) { result in
                         model.loadingAlert = false
                         switch result {
                         case .success(let resultSecretKey):

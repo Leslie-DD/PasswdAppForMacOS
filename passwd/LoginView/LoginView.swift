@@ -80,6 +80,7 @@ struct LoginView: View {
                                                 model.loginUsername = loginInfo.username
                                                 model.loginPassword = loginInfo.password ?? ""
                                                 model.loginSecretKey = loginInfo.secretKey ?? ""
+                                                model.loginDomain = loginInfo.domain ?? ""
                                                 model.loginIpAddress = loginInfo.ip ?? "0.0.0.0"
                                                 model.loginHost = String(loginInfo.host ?? 8080)
                                                 
@@ -253,6 +254,39 @@ struct LoginView: View {
                             
                             if isExpanded {
                                 VStack(spacing: 12) {
+                                    HStack(spacing: 12) {
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Text("Domain")
+                                                .font(.system(size: 12, weight: .medium))
+                                                .foregroundColor(.secondary)
+                                            HStack {
+                                                
+                                                Text("https://")
+                                                    .textFieldStyle(.plain)
+                                                    .font(.system(size: 14))
+                                                TextField("www.xxx.yyy/zzz", text: $model.loginDomain)
+                                                    .textFieldStyle(.plain)
+                                                    .font(.system(size: 14))
+                                                    .onChange(of: model.loginDomain) { oldValue, newValue in
+                                                        let filteredValue = newValue.replacingOccurrences(of: "\n", with: "")
+                                                            .replacingOccurrences(of: " ", with: "")
+                                                        if filteredValue != newValue {
+                                                            model.loginDomain = filteredValue
+                                                        }
+                                                    }
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color(.controlBackgroundColor))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .strokeBorder(Color(.separatorColor), lineWidth: 1)
+                                            )
+                                    )
                                     HStack(spacing: 12) {
                                         VStack(alignment: .leading, spacing: 8) {
                                             Text("IP Address")
@@ -454,14 +488,16 @@ struct LoginView: View {
         if (InfoChecker.loginInfoCheckerShared.isUsernameValid(username: model.loginUsername)
             && InfoChecker.loginInfoCheckerShared.isPasswordValid(password: model.loginPassword)
             && InfoChecker.loginInfoCheckerShared.isSecretKeyValid(secretKey: model.loginSecretKey)
-            && InfoChecker.loginInfoCheckerShared.isIpAddressValid(ipAddress: model.loginIpAddress)
-            && InfoChecker.loginInfoCheckerShared.isValidHost(hostStr: model.loginHost)) {
+//            && InfoChecker.loginInfoCheckerShared.isIpAddressValid(ipAddress: model.loginIpAddress)
+//            && InfoChecker.loginInfoCheckerShared.isValidHost(hostStr: model.loginHost)
+        ) {
             
             model.loadingAlert = true
             model.loginByPasswd(
                 username: model.loginUsername,
                 password: model.loginPassword,
                 secretKey: model.loginSecretKey,
+                domain: model.loginDomain,
                 ip: model.loginIpAddress,
                 host: Int(model.loginHost) ?? 8081
             ) { result in
@@ -510,6 +546,7 @@ struct LoginView: View {
         currentLoginInfo?.username = model.loginUsername
         currentLoginInfo?.password = model.loginPassword
         currentLoginInfo?.secretKey = model.loginSecretKey
+        currentLoginInfo?.domain = model.loginDomain
         currentLoginInfo?.ip = model.loginIpAddress
         currentLoginInfo?.host = Int(model.loginHost) ?? 8081
         currentLoginInfo?.updateTime = InfoChecker.currentTimeStamp
@@ -526,6 +563,7 @@ struct LoginView: View {
                 username: model.loginUsername,
                 password: model.loginPassword,
                 secretKey: model.loginSecretKey,
+                domain: model.loginDomain,
                 ip: model.loginIpAddress,
                 host: Int(model.loginHost) ?? 8081,
                 autoLogin: autoLogin
@@ -535,6 +573,7 @@ struct LoginView: View {
             alreadyInDbUserInfo?.username = model.loginUsername
             alreadyInDbUserInfo?.password = model.loginPassword
             alreadyInDbUserInfo?.secretKey = model.loginSecretKey
+            alreadyInDbUserInfo?.domain = model.loginDomain
             alreadyInDbUserInfo?.ip = model.loginIpAddress
             alreadyInDbUserInfo?.host = Int(model.loginHost) ?? 8081
             alreadyInDbUserInfo?.updateTime = InfoChecker.currentTimeStamp
@@ -564,6 +603,7 @@ struct LoginView: View {
             let theUserInfoNotNil = theUserInfo!
             theUserInfoNotNil.password = model.rememberPasswordStatusOn ? model.loginPassword : ""
             theUserInfoNotNil.secretKey = model.rememberSecretKeyStatusOn ? model.loginSecretKey : ""
+            theUserInfoNotNil.domain = model.rememberAddressStatusOn ? model.loginDomain : ""
             theUserInfoNotNil.ip = model.rememberAddressStatusOn ? model.loginIpAddress : "0.0.0.0"
             theUserInfoNotNil.host = model.rememberAddressStatusOn ? Int(model.loginHost) ?? 8080 : 8080
             theUserInfoNotNil.autoLogin = false
@@ -572,6 +612,7 @@ struct LoginView: View {
             let theUserInfoNotNil = UserInfo(username: model.loginUsername)
             theUserInfoNotNil.password = model.rememberPasswordStatusOn ? model.loginPassword : ""
             theUserInfoNotNil.secretKey = model.rememberSecretKeyStatusOn ? model.loginSecretKey : ""
+            theUserInfoNotNil.domain = model.rememberAddressStatusOn ? model.loginDomain : ""
             theUserInfoNotNil.ip = model.rememberAddressStatusOn ? model.loginIpAddress : "0.0.0.0"
             theUserInfoNotNil.host = model.rememberAddressStatusOn ? Int(model.loginHost) ?? 8080 : 8080
             theUserInfoNotNil.autoLogin = false

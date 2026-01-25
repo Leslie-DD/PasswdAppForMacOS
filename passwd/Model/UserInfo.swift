@@ -13,6 +13,7 @@ class UserInfo {
     @Attribute(.unique) var username: String
     var password: String?
     var secretKey: String?
+    var domain: String?
     var ip: String?
     var host: Int?
     var updateTime: Int64
@@ -22,6 +23,7 @@ class UserInfo {
         self.username = username
         self.password = nil
         self.secretKey = nil
+        self.domain = nil
         self.ip = nil
         self.host = nil
         self.updateTime = InfoChecker.currentTimeStamp
@@ -32,6 +34,7 @@ class UserInfo {
         self.username = username
         self.password = password
         self.secretKey = nil
+        self.domain = nil
         self.ip = nil
         self.host = nil
         self.updateTime = InfoChecker.currentTimeStamp
@@ -42,6 +45,7 @@ class UserInfo {
         self.username = username
         self.password = password
         self.secretKey = secretKey
+        self.domain = nil
         self.ip = nil
         self.host = nil
         self.updateTime = InfoChecker.currentTimeStamp
@@ -52,6 +56,7 @@ class UserInfo {
         self.username = username
         self.password = password
         self.secretKey = secretKey
+        self.domain = nil
         self.ip = ip
         self.host = host
         self.updateTime = InfoChecker.currentTimeStamp
@@ -62,8 +67,53 @@ class UserInfo {
         self.username = username
         self.password = password
         self.secretKey = secretKey
+        self.domain = nil
         self.ip = ip
         self.host = host
+        self.updateTime = InfoChecker.currentTimeStamp
+        self.autoLogin = true
+    }
+    
+    init(username: String, password: String?, secretKey: String?, domain: String?, ip: String?, host: Int?) {
+        self.username = username
+        self.password = password
+        self.secretKey = secretKey
+        self.domain = domain
+        self.ip = ip
+        self.host = host
+        self.updateTime = InfoChecker.currentTimeStamp
+        self.autoLogin = false
+    }
+    
+    init(username: String, password: String?, secretKey: String?, domain: String?, ip: String?, host: Int?, autoLogin: Bool) {
+        self.username = username
+        self.password = password
+        self.secretKey = secretKey
+        self.domain = domain
+        self.ip = ip
+        self.host = host
+        self.updateTime = InfoChecker.currentTimeStamp
+        self.autoLogin = true
+    }
+    
+    init(username: String, password: String?, secretKey: String?, domain: String?) {
+        self.username = username
+        self.password = password
+        self.secretKey = secretKey
+        self.domain = domain
+        self.ip = nil
+        self.host = nil
+        self.updateTime = InfoChecker.currentTimeStamp
+        self.autoLogin = false
+    }
+    
+    init(username: String, password: String?, secretKey: String?, domain: String?, autoLogin: Bool) {
+        self.username = username
+        self.password = password
+        self.secretKey = secretKey
+        self.domain = domain
+        self.ip = nil
+        self.host = nil
         self.updateTime = InfoChecker.currentTimeStamp
         self.autoLogin = true
     }

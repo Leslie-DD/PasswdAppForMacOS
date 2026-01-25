@@ -212,12 +212,16 @@ class RequestHelper {
             return
         }
         
+        print("_____________________________________________________________")
+        print("| Request URL: \(uri)")
+        print("| Request params: \(params ?? [:])")
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         if (token != nil) {
-            urlRequest.setValue(token, forHTTPHeaderField: "access_token")
+            urlRequest.setValue(token, forHTTPHeaderField: "access-token")
         }
         
         if (params != nil) {
@@ -235,32 +239,38 @@ class RequestHelper {
         
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                print("Error: \(error)")
+                print("| Error_0: \(error)")
+                print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                 completion(.failure(.requestFailed("unknown error")))
             } else if let data = data {
                 guard let jsonStr = String(data: data, encoding: .utf8) else {
-                    print("Error_1: \(data)")
+                    print("| Error_1: \(data)")
+                    print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                     completion(.failure(.requestFailed("encoding .utf8 error")))
                     return
                 }
                 
-                print("jsonStr: \(jsonStr)")
+                print("| Response Json: \(String(jsonStr.prefix(100)))...")
                 if (jsonStr.isEmpty) {
-                    print("No valid response")
+                    print("| Error_2: No valid response")
+                    print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                     completion(.failure(.requestFailed("No valid response")))
                     return
                 }
                 guard let jsonData = jsonStr.data(using: .utf8) else {
-                    print("Error_2: \(data)")
+                    print("| Error_3: \(data)")
+                    print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                     completion(.failure(.requestFailed(".data encoding .utf8 error")))
                     return
                 }
                 
                 do {
                     let responseObject = try JSONDecoder().decode(T.self, from: jsonData)
+                    print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                     completion(.success(responseObject))
                 } catch {
-                    print("Error_4 decoding error: \(error)")
+                    print("| Error_4 decoding error: \(error)")
+                    print("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                     completion(.failure(.requestFailed("Error: decoding error")))
                 }
             }

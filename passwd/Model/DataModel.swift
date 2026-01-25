@@ -46,6 +46,7 @@ class DataModel: ObservableObject {
     @Published var loginUsername: String = ""
     @Published var loginPassword: String = ""
     @Published var loginSecretKey: String = ""
+    @Published var loginDomain: String = ""
     @Published var loginIpAddress: String = "0.0.0.0"
     @Published var loginHost: String = "8080"
     
@@ -127,10 +128,10 @@ class DataModel: ObservableObject {
             }
     }
     
-    func signup(username: String, password: String, ip: String, host: String, completion: @escaping (Result<String, RequestError>) -> Void) {
+    func signup(username: String, password: String, domain: String, ip: String, host: String, completion: @escaping (Result<String, RequestError>) -> Void) {
         print("signup")
         clearData()
-        Constants.initIpHost(ipHost: ip + ":\(host)")
+        Constants.initRequestAddress(domain: domain, ipHost: ip + ":\(host)")
         
         RequestHelper.signup(params: ["username": username, "password": password]) { result in
             switch result {
@@ -153,10 +154,10 @@ class DataModel: ObservableObject {
         }
     }
 
-    func loginByPasswd(username: String, password: String, secretKey: String, ip: String, host: Int, completion: @escaping (Result<String, RequestError>) -> Void) {
+    func loginByPasswd(username: String, password: String, secretKey: String, domain: String, ip: String, host: Int, completion: @escaping (Result<String, RequestError>) -> Void) {
         print("loginByPasswd")
         clearData()
-        Constants.initIpHost(ipHost: ip + ":\(host)")
+        Constants.initRequestAddress(domain: domain, ipHost: ip + ":\(host)")
  
         let parameters = ["username": username, "password": password, "secretKey": secretKey]
         
@@ -679,6 +680,7 @@ class DataModel: ObservableObject {
             username: lastAutoLoginUserInfo.username,
             password: lastAutoLoginUserInfo.password ?? "",
             secretKey: lastAutoLoginUserInfo.secretKey ?? "",
+            domain: lastAutoLoginUserInfo.domain ?? "",
             ip: lastAutoLoginUserInfo.ip ?? "0.0.0.0",
             host: lastAutoLoginUserInfo.host ?? 8080
         ) { result in
@@ -702,7 +704,7 @@ class DataModel: ObservableObject {
         self.rememberUsernameStatusOn = !self.loginUsername.isEmpty
         self.rememberPasswordStatusOn = !self.loginPassword.isEmpty
         self.rememberSecretKeyStatusOn = !self.loginSecretKey.isEmpty
-        self.rememberAddressStatusOn = !self.loginIpAddress.isEmpty && !self.loginHost.isEmpty
+        self.rememberAddressStatusOn = !self.loginIpAddress.isEmpty && !self.loginHost.isEmpty || !self.loginDomain.isEmpty
         
         
         self.currentScreen = .Login
